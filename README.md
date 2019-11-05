@@ -17,7 +17,7 @@ When a hand is present in picture, Key point model is being used to shift boundi
 
 
 ## Results:
-
+![Alt Text](https://github.com/einstalek/hand-keypoint-detection/blob/master/examples/clip.gif)
 
 
 
