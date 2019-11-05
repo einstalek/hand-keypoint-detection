@@ -16,7 +16,12 @@ When a hand is present in picture, Key point model is being used to shift boundi
 * ```main.py```: runs Cursor activity on video stream from camera using opencv and displays some statistics
 
 
-## Results:
+## FPS
+On MacBook pro 2017 I got following statistics:
+* Detector model: 5-6 fps
+* KeyPoint model: ~10 fps
+
+## Example
 ![Alt Text](https://github.com/einstalek/hand-keypoint-detection/blob/master/examples/clip.gif)
 
 
