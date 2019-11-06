@@ -58,9 +58,6 @@ if __name__ == "__main__":
             add_text(pic, "act: %.3f" % cursor.act)
             add_text(pic, "dt: %.3f" % cursor.dt)
 
-            add_text(pic, "speed_x: %.3f" % cursor.speed_x)
-            add_text(pic, "speed_y: %.3f" % cursor.speed_y)
-
         t3 = time.time()
 
         pic = cv2.resize(pic, (int(cursor.w / scale), int(cursor.h / scale)))

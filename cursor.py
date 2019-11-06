@@ -50,14 +50,14 @@ class Cursor:
 
         self.val_thresh = val_thresh
         self.act_thresh = act_thresh
-        self.act = 0.
 
         self.started = False
         self.last_update = None
         self.hand_present = False
         self.time_waiting_max = time_waiting_max
-        self.speed_x, self.speed_y = 0., 0.
 
+        # some statistics
+        self.act = 0.
         self.camera_fps = 0.
         self.kp_model_fps = 0.
         self.kp_model_handler_fps = 0.
@@ -110,9 +110,6 @@ class Cursor:
         mean_x = self.kps[:, 0].mean()
         mean_y = self.kps[:, 1].mean()
 
-        self.speed_x = (mean_x - self.bx) / self.bx
-        self.speed_y = (mean_y - self.by) / self.by
-
         self.bx = mean_x
         self.by = mean_y * 1.1
 
@@ -133,12 +130,8 @@ class Cursor:
         w, h = x2 - x1, y2 - y1
 
         # self.bw, self.bh = w, h
-
         self.bw = max(w, h)
         self.bh = max(w, h)
-
-        self.speed_x = (x1 + self.bw / 2 - self.bx) / self.bx
-        self.speed_y = (y1 + self.bh / 2 - self.by) / self.by
 
         self.bx = x1 + self.bw / 2
         self.by = y1 + self.bh / 2
