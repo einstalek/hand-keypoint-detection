@@ -36,27 +36,25 @@ if __name__ == "__main__":
         t1 = time.time()
         read, pic = cursor.cap.read()
         t2 = time.time()
-        cursor.camera_fps = alpha * cursor.camera_fps + (1 - alpha) / (t2 - t1)
+        # cursor.camera_fps = alpha * cursor.camera_fps + (1 - alpha) / (t2 - t1)
+        cursor.camera_fps = alpha * cursor.camera_fps + (1 - alpha) * (t2 - t1)
 
         pic = cv2.cvtColor(pic, cv2.COLOR_BGR2RGB) / 255.
         pic = cursor.on_new_frame(pic)
 
         if pic is not None:
             add_text(pic,
-                     "Camera FPS: %.2f" % cursor.camera_fps)
+                     "Camera dt: %.4f" % cursor.camera_fps)
             add_text(pic,
-                     "KP model FPS: %.2f" % cursor.kp_model_fps)
+                     "KP model dt: %.4f" % cursor.kp_model_fps)
             add_text(pic,
-                     "KP model handler FPS: %.2f" % cursor.kp_model_handler_fps)
+                     "KP model handler dt: %.4f" % cursor.kp_model_handler_fps)
             add_text(pic,
-                     "Detector FPS: %.2f" % cursor.detector_fps)
+                     "Detector dt: %.4f" % cursor.detector_fps)
             add_text(pic,
-                     "Detector handler FPS: %.2f" % cursor.detector_handler_fps)
+                     "Detector handler dt: %.4f" % cursor.detector_handler_fps)
             add_text(pic,
-                     "Draw FPS: %.3f" % cursor.draw_fps)
-
-            add_text(pic, "act: %.3f" % cursor.act)
-            add_text(pic, "dt: %.3f" % cursor.dt)
+                     "Draw dt: %.4f" % cursor.draw_fps)
 
         t3 = time.time()
 
@@ -66,4 +64,5 @@ if __name__ == "__main__":
             break
 
         t4 = time.time()
-        cursor.draw_fps = alpha * cursor.draw_fps + (1 - alpha) / (t4 - t3)
+        # cursor.draw_fps = alpha * cursor.draw_fps + (1 - alpha) / (t4 - t3)
+        cursor.draw_fps = alpha * cursor.draw_fps + (1 - alpha) * (t4 - t3)

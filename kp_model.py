@@ -63,7 +63,8 @@ class KeyPointModel:
         # pred = self._model.predict(crop[np.newaxis])
         # kps = pred[0].reshape((-1, 2))
         _t2 = time.time()
-        self.parent.kp_model_fps = self.alpha * self.parent.kp_model_fps + (1 - self.alpha) / (_t2 - _t1)
+        # self.parent.kp_model_fps = self.alpha * self.parent.kp_model_fps + (1 - self.alpha) / (_t2 - _t1)
+        self.parent.kp_model_fps = self.alpha * self.parent.kp_model_fps + (1 - self.alpha) * (_t2 - _t1)
 
         kps = self.decode_openpose(pred)
         if kps is not None:
@@ -73,7 +74,8 @@ class KeyPointModel:
             kps[:, 1] += self.y1
 
             _t3 = time.time()
-            self.parent.kp_model_handler_fps = self.alpha * self.parent.kp_model_handler_fps + (1 - self.alpha) / (_t3 - _t2)
+            # self.parent.kp_model_handler_fps = self.alpha * self.parent.kp_model_handler_fps + (1 - self.alpha) / (_t3 - _t2)
+            self.parent.kp_model_handler_fps = self.alpha * self.parent.kp_model_handler_fps + (1 - self.alpha) * (_t3 - _t2)
 
             self.parent.kps = kps
             self.parent.update_on_kps()

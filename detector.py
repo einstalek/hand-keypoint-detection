@@ -49,7 +49,8 @@ class Detector:
         _t1 = time.time()
         pred = self._model.predict(255 * frame[np.newaxis])
         _t2 = time.time()
-        self.parent.detector_fps = self.alpha * self.parent.detector_fps + (1 - self.alpha) / (_t2 - _t1)
+        # self.parent.detector_fps = self.alpha * self.parent.detector_fps + (1 - self.alpha) / (_t2 - _t1)
+        self.parent.detector_fps = self.alpha * self.parent.detector_fps + (1 - self.alpha) * (_t2 - _t1)
 
         boxes = decode_y2(pred,
                           confidence_thresh=0.6,  # _CONF, #уверенность
@@ -68,7 +69,9 @@ class Detector:
             y2 /= self.scale_y
 
             _t3 = time.time()
-            self.parent.detector_handler_fps = self.alpha * self.parent.detector_handler_fps + (1 - self.alpha) / (_t3 - _t2)
+            # self.parent.detector_handler_fps = self.alpha * self.parent.detector_handler_fps + (1 - self.alpha) / (_t3 - _t2)
+            self.parent.detector_handler_fps = self.alpha * self.parent.detector_handler_fps + (1 - self.alpha) * (
+                        _t3 - _t2)
             self.parent.update_on_bbox([p, x1, x2, y1, y2])
 
     def __call__(self, frame: np.array, *args, **kwargs):
