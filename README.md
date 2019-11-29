@@ -6,8 +6,6 @@ Model consists of two parts:
 - Detector: predicts bounding box for single hand
 - Key point model: predicts coordinates for fingers. 
 
-When a hand is present in picture, Key point model is being used to shift bounding box
-
 
 ## Code 
 * ```detector.py```: code for detector model
